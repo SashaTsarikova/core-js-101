@@ -53,10 +53,8 @@ function parseDataFromIso8601(value) {
  *    Date(2012,1,1)    => true
  *    Date(2015,1,1)    => false
  */
-function isLeapYear(/* date */) {
-  // console.log(new Date(date.getYear(), 1, 29).getMonth())
-  // return !!(new Date(date.getYear(), 1, 29).getMonth() === 1);
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  return !!(new Date(date.getFullYear(), 1, 29).getMonth() === 1);
 }
 
 
@@ -76,6 +74,15 @@ function isLeapYear(/* date */) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(/* startDate, endDate */) {
+  // options = {
+  //   hour: 'numeric',
+  //   minute: 'numeric',
+  //   second: 'numeric',
+  //   fractionalSecondDigits: 3
+  // };
+  // resultDate = endDate - startDate - new Date(10800000);
+
+  // return new Intl.DateTimeFormat('en-US', options).format(resultDate);
   throw new Error('Not implemented');
 }
 

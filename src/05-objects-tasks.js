@@ -145,6 +145,49 @@ const cssSelectorBuilder = {
   },
 };
 
+// function cssSelectorBuilder() {
+//   this.value = '';
+
+//   this.element = (value) => {
+//     this.value += value;
+//     return this;
+//   }
+
+//   this.id = (value) => {
+//     this.value += `#${value}`;
+//     return this;
+//   }
+
+//   this.class = (value) => {
+//     this.value += `.${value}`;
+//     return this;
+//   }
+
+//   this.attr = (value) => {
+//     this.value += `[${value}]`;
+//     return this;
+//   }
+
+//   this.pseudoClass  = (value) => {
+//     this.value += `:${value}`;
+//     return this;
+//   }
+
+//   this.pseudoElement = (value) => {
+//     this.value += `::${value}`;
+//     return this;
+//   }
+
+//   this.combine = (selector1, combinator, selector2) => {
+//     this.value += `${selector1} ${combinator}  ${selector2}`;
+//     return this;
+//   }
+
+//   this.stringify = () => {
+//     return this.value;
+//   }
+// }
+
 
 module.exports = {
   Rectangle,

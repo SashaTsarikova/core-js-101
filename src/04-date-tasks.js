@@ -73,17 +73,16 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,10,0,0,250)     => "00:00:00.250"
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
-function timeSpanToString(/* startDate, endDate */) {
-  // options = {
-  //   hour: 'numeric',
-  //   minute: 'numeric',
-  //   second: 'numeric',
-  //   fractionalSecondDigits: 3
-  // };
-  // resultDate = endDate - startDate - new Date(10800000);
+function timeSpanToString(startDate, endDate) {
+  const options = {
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    fractionalSecondDigits: 3,
+  };
+  const resultDate = endDate - startDate - new Date(10800000);
 
-  // return new Intl.DateTimeFormat('en-US', options).format(resultDate);
-  throw new Error('Not implemented');
+  return new Intl.DateTimeFormat('ru', options).format(resultDate).replace(',', '.');
 }
 
 
@@ -103,8 +102,12 @@ function timeSpanToString(/* startDate, endDate */) {
  *    Date.UTC(2016,3,5,18, 0) => Math.PI
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
-function angleBetweenClockHands(/* date */) {
-  throw new Error('Not implemented');
+function angleBetweenClockHands(date) {
+  const hoursCount = ((((date.getHours() - 3) * 30) + date.getMinutes() / 2) % 360);
+  const minutesCount = date.getMinutes() * 6;
+  const degToAc = Math.abs(minutesCount - hoursCount);
+  const degrees = degToAc > 180 ? 360 - degToAc : degToAc;
+  return (Math.PI / 180) * degrees;
 }
 
 

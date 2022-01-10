@@ -23,8 +23,11 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.asin(x))
  *
  */
-function getComposition(/* f, g */) {
-  throw new Error('Not implemented');
+function getComposition(f, g) {
+  const a = function newFunction(x) {
+    return f(g(x));
+  };
+  return a;
 }
 
 
@@ -44,10 +47,12 @@ function getComposition(/* f, g */) {
  *   power05(16) => 4
  *
  */
-function getPowerFunction(/* exponent */) {
-  throw new Error('Not implemented');
+function getPowerFunction(exponent) {
+  const a = function newF(x) {
+    return x ** exponent;
+  };
+  return a;
 }
-
 
 /**
  * Returns the polynom function of one argument based on specified coefficients.
@@ -82,6 +87,10 @@ function getPolynom() {
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
 function memoize(/* func */) {
+  // const a = function newF() {
+  //   return func();
+  // };
+  // return a;
   throw new Error('Not implemented');
 }
 
@@ -147,8 +156,12 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(/* fn, ...args1 */) {
-  throw new Error('Not implemented');
+function partialUsingArguments(fn, ...args1) {
+  const a = function newF(...args2) {
+    return fn(...args1, ...args2);
+  };
+  return a;
+  // throw new Error('Not implemented');
 }
 
 

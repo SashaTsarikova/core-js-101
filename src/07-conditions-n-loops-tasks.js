@@ -276,6 +276,24 @@ function reverseInteger(num) {
   return Number(String(num).split('').reverse().join(''));
 }
 
+/**
+ * Returns the digital root of integer:
+ *   step1 : find sum of all digits
+ *   step2 : if sum > 9 then goto step1 otherwise return the sum
+ *
+ * @param {number} n
+ * @return {number}
+ *
+ * @example:
+ *   12345 ( 1+2+3+4+5 = 15, 1+5 = 6) => 6
+ *   23456 ( 2+3+4+5+6 = 20, 2+0 = 2) => 2
+ *   10000 ( 1+0+0+0+0 = 1 ) => 1
+ *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
+ */
+function getDigitalRoot(num) {
+  const summa = String(num).split('').reduce((sum, el) => sum + Number(el), 0);
+  return Math.floor(summa / 10) > 0 ? getDigitalRoot(summa) : summa;
+}
 
 /**
  * Validates the CCN (credit card number) and return true if CCN is valid
@@ -297,29 +315,27 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
-}
 
-/**
- * Returns the digital root of integer:
- *   step1 : find sum of all digits
- *   step2 : if sum > 9 then goto step1 otherwise return the sum
- *
- * @param {number} n
- * @return {number}
- *
- * @example:
- *   12345 ( 1+2+3+4+5 = 15, 1+5 = 6) => 6
- *   23456 ( 2+3+4+5+6 = 20, 2+0 = 2) => 2
- *   10000 ( 1+0+0+0+0 = 1 ) => 1
- *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
- */
-function getDigitalRoot(num) {
-  const summa = String(num).split('').reduce((sum, el) => sum + Number(el), 0);
-  return Math.floor(summa / 10) > 0 ? getDigitalRoot(summa) : summa;
+function isCreditCardNumber(ccn) {
+  const arrToCompare = String(ccn).slice(0, String(ccn).length - 1).split('').reverse();
+  const numberToCompare = Number(String(ccn).slice(String(ccn).length - 1));
+  const summa = arrToCompare.map((el, index) => {
+    if (!(index % 2)) {
+      return +el * 2;
+    }
+    return +el;
+  })
+    .map((el) => {
+      if (el > 9) {
+        return String(el).split('').reduce((sum, el2) => sum + Number(el2), 0);
+      }
+      return el;
+    })
+    .reduce((sum, el) => sum + Number(el), 0);
+  const mod10 = !(summa % 10) ? 10 : (summa % 10);
+  return (10 - mod10) === numberToCompare;
+  // throw new Error('Not implemented');
 }
-
 
 /**
  * Returns true if the specified string has the balanced brackets and false otherwise.
@@ -387,8 +403,8 @@ function isBracketsBalanced(str) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 
@@ -463,6 +479,16 @@ function getMatrixProduct(/* m1, m2 */) {
  *
  */
 function evaluateTicTacToePosition(/* position */) {
+  // function isLine(sign) {
+
+  // }
+  // function isColumn(sign) {
+
+  // }
+  // function isCross(sign) {
+
+  // }
+
   throw new Error('Not implemented');
 }
 

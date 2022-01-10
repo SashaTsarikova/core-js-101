@@ -67,8 +67,16 @@ function getPowerFunction(exponent) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(...rest) {
+  const arrArguments = [...rest].reverse();
+  const a = function newFunction() {
+    return null;
+  };
+  if (!arrArguments.length) return a;
+  const func = function newFunc(x) {
+    return arrArguments.reduce((sum, el, index) => sum + el * (x ** index));
+  };
+  return func;
 }
 
 
@@ -86,14 +94,20 @@ function getPolynom() {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  // const a = function newF() {
-  //   return func();
-  // };
-  // return a;
-  throw new Error('Not implemented');
+function memoize(func) {
+  let counter = 0;
+  let item;
+  const a = function myFunction() {
+    if (counter === 0) {
+      counter += 1;
+      item = func();
+      return item;
+    }
+    return item;
+  };
+  return a;
 }
-
+// throw new Error('Not implemented');
 
 /**
  * Returns the function trying to call the passed function and if it throws,
@@ -161,7 +175,6 @@ function partialUsingArguments(fn, ...args1) {
     return fn(...args1, ...args2);
   };
   return a;
-  // throw new Error('Not implemented');
 }
 
 
